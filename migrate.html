@@ -138,7 +138,8 @@
     }
 
     async function sanityQuery(query) {
-      const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-05-01/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;
+      const target = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-05-01/data/query/${SANITY_DATASET}?query=${encodeURIComponent(query)}`;
+      const url = `https://corsproxy.io/?${encodeURIComponent(target)}`;
       const res = await fetch(url, {
         headers: { 'Authorization': `Bearer ${SANITY_TOKEN}` }
       });
@@ -150,7 +151,8 @@
     }
 
     async function sanityMutate(mutations) {
-      const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-05-01/data/mutate/${SANITY_DATASET}`;
+      const target = `https://${SANITY_PROJECT_ID}.api.sanity.io/v2024-05-01/data/mutate/${SANITY_DATASET}`;
+      const url = `https://corsproxy.io/?${encodeURIComponent(target)}`;
       const res = await fetch(url, {
         method: 'POST',
         headers: {
@@ -167,7 +169,8 @@
     }
 
     async function fetchCloudinaryResources(cloudinaryProjectId) {
-      const url = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/resources/search`;
+      const target = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/resources/search`;
+      const url = `https://corsproxy.io/?${encodeURIComponent(target)}`;
       const auth = btoa(`${CLOUDINARY_API_KEY}:${CLOUDINARY_API_SECRET}`);
       
       try {
